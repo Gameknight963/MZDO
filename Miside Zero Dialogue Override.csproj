@@ -1,0 +1,99 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+
+    <OutputType>Library</OutputType>
+    <RootNamespace>MZDO</RootNamespace>
+    <AssemblyName>Miside Zero Dialogue Override</AssemblyName>
+    <Deterministic>true</Deterministic>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <LangVersion>latest</LangVersion>
+    <Nullable>disable</Nullable>
+	<GamePath>C:\Users\sebi G\projects\launcher.NET\bin\Debug\net10.0-windows\games\broken void_abd72c6a-4b88-4bc2-aae6-c621dda10f83</GamePath>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineConstants>TRACE</DefineConstants>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+
+	<PropertyGroup>
+		<GamePath>C:\Users\sebis\projects\launcherdotnet\bin\Debug\net10.0-windows\games\adding bhop to msz_c88722bf-25f5-4e81-924a-5f62d9d41032</GamePath>
+	</PropertyGroup>
+	
+	<ItemGroup>
+		<Compile Remove="MZDO.Shared\**" />
+		<Compile Remove="Shared\**\*.cs" />
+		<None Include="Shared\**\*.cs" />
+	</ItemGroup>
+	
+	<ItemGroup>
+	  <EmbeddedResource Remove="MZDO.Shared\**" />
+	  <None Remove="MZDO.Shared\**" />
+	</ItemGroup>
+	<ItemGroup>
+		<Reference Include="Assembly-CSharp">
+			<HintPath>$(GamePath)/MelonLoader\Il2CppAssemblies\Assembly-CSharp.dll</HintPath>
+		</Reference>
+		<Reference Include="Il2Cppmscorlib">
+			<HintPath>$(GamePath)/MelonLoader\Il2CppAssemblies\Il2Cppmscorlib.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.CoreModule">
+			<HintPath>$(GamePath)/MelonLoader\Il2CppAssemblies\UnityEngine.CoreModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine">
+			<HintPath>$(GamePath)/MelonLoader\Il2CppAssemblies\UnityEngine.dll</HintPath>
+		</Reference>
+		<Reference Include="MelonLoader">
+			<HintPath>$(GamePath)/MelonLoader\net6\MelonLoader.dll</HintPath>
+		</Reference>
+		<Reference Include="Il2CppInterop.Common">
+			<HintPath>$(GamePath)/MelonLoader\net6\Il2CppInterop.Common.dll</HintPath>
+		</Reference>
+		<Reference Include="Newtonsoft.Json">
+			<HintPath>$(GamePath)/MelonLoader\Net6\Newtonsoft.Json.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.AudioModule">
+			<HintPath>$(GamePath)/MelonLoader\Il2CppAssemblies\UnityEngine.AudioModule.dll</HintPath>
+		</Reference>
+		<Reference Include="0Harmony">
+			<HintPath>$(GamePath)/MelonLoader\net6\0Harmony.dll</HintPath>
+		</Reference>
+		<Reference Include="Il2CppInterop.Runtime">
+			<HintPath>$(GamePath)/MelonLoader\net6\Il2CppInterop.Runtime.dll</HintPath>
+		</Reference>
+		<Reference Include="VoidLib2">
+		  <HintPath>$(GamePath)\UserLibs\VoidLib2.dll</HintPath>
+		</Reference>
+	</ItemGroup>
+
+  <ItemGroup>
+    <Content Include="bass.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EditorConfigFiles Remove="C:\Users\sebis\projects\Miside Zero Dialogue Override\.editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="C:\Users\sebis\projects\Miside Zero Dialogue Override\.editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="MZDO.Shared\MZDO.Shared.csproj" />
+  </ItemGroup>
+
+</Project>
