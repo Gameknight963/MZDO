@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using UnityEngine;
 using MZDO;
+using MZDO.Shared;
 
 namespace MSZDialogueMap
 {
@@ -33,7 +34,7 @@ namespace MSZDialogueMap
                 TargetGameVersion = Application.version,
                 trees = new List<DialogueTreeDTO>()
             };
-            pack.MatchGameVersion();
+            pack.TargetGameVersion = Application.version;
 
             foreach (DialogueTree tree in trees)
             {

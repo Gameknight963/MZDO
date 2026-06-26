@@ -33,16 +33,6 @@
 	</PropertyGroup>
 	
 	<ItemGroup>
-		<Compile Remove="MZDO.Shared\**" />
-		<Compile Remove="Shared\**\*.cs" />
-		<None Include="Shared\**\*.cs" />
-	</ItemGroup>
-	
-	<ItemGroup>
-	  <EmbeddedResource Remove="MZDO.Shared\**" />
-	  <None Remove="MZDO.Shared\**" />
-	</ItemGroup>
-	<ItemGroup>
 		<Reference Include="Assembly-CSharp">
 			<HintPath>$(GamePath)/MelonLoader\Il2CppAssemblies\Assembly-CSharp.dll</HintPath>
 		</Reference>
@@ -79,12 +69,6 @@
 	</ItemGroup>
 
   <ItemGroup>
-    <Content Include="bass.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-
-  <ItemGroup>
     <EditorConfigFiles Remove="C:\Users\sebis\projects\Miside Zero Dialogue Override\.editorconfig" />
   </ItemGroup>
 
@@ -93,7 +77,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="MZDO.Shared\MZDO.Shared.csproj" />
+    <ProjectReference Include="..\MZDO.Shared\MZDO.Shared.csproj" />
   </ItemGroup>
 
 </Project>
