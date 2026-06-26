@@ -2,7 +2,6 @@
 
   <PropertyGroup>
     <TargetFramework>net472</TargetFramework>
-
     <OutputType>Library</OutputType>
     <RootNamespace>MZDO</RootNamespace>
     <AssemblyName>Miside Zero Dialogue Override</AssemblyName>
@@ -10,9 +9,8 @@
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <LangVersion>latest</LangVersion>
     <Nullable>disable</Nullable>
-	<GamePath>C:\Users\sebi G\projects\launcher.NET\bin\Debug\net10.0-windows\games\broken void_abd72c6a-4b88-4bc2-aae6-c621dda10f83</GamePath>
   </PropertyGroup>
-
+  
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
@@ -64,7 +62,7 @@
 			<HintPath>$(GamePath)/MelonLoader\net6\Il2CppInterop.Runtime.dll</HintPath>
 		</Reference>
 		<Reference Include="VoidLib2">
-		  <HintPath>$(GamePath)\UserLibs\VoidLib2.dll</HintPath>
+		  <HintPath>$VoidLib2.dll</HintPath>
 		</Reference>
 	</ItemGroup>
 

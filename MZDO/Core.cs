@@ -8,6 +8,10 @@ using System.IO.Compression;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using MZDO.Shared;
+using System.Linq;
+using System.Runtime.CompilerServices;
+
+[assembly: MelonInfo(typeof(MZDO.Core), "Miside Zero Dialogue Override", "3.0.0", "Gameknight963")]
 
 namespace MZDO
 {
@@ -63,6 +67,18 @@ namespace MZDO
             LoadMszdlg(file);
         }
 
+        private static bool TryGetSpeakerAudioSource(string speakerName, out AudioSource source)
+        {
+            GameObject gameObject = GameObject.Find($"{speakerName}/Audio/Speak");
+            if (gameObject != null)
+            {
+                source = gameObject.GetComponent<AudioSource>();
+                return true;
+            }
+            source = null;
+            return false;
+        }
+
         public override void OnSceneWasLoaded(int buildIndex, string sceneName)
         {
             if (!IsGameScene) return;
@@ -101,8 +117,7 @@ namespace MZDO
                     string audioPath = NodeAudioManager.GetNodeAudioPath(i, dto.id);
                     if (audioPath != null)
                     {
-                        node.voiceClip = VoidLib2.AudioImporter.Bass.LoadAudio(audioPath, out int code);
-                        if (code != 0) LoggerInstance.Error($"Bass audio import failed with code {code}");
+                        node.voiceClip = VoidLib2.AudioImporter.Bass.LoadAudio(audioPath);
                     }
                 }
 
@@ -126,9 +141,49 @@ namespace MZDO
                     node.nextNodes = patchedNextNodes.ToArray();
                 }
             }
+
+            DialogueManager manager = UnityEngine.Object.FindObjectsByType<DialogueManager>(FindObjectsSortMode.None)[0];
+            VoidLib2.ChirpList chirps = new(manager);
+            List<string> speakers = Pack.trees.SelectMany(tree => tree.nodes).Select(x => x.speakerName).Distinct().ToList();
+
+            foreach (string speaker in speakers)
+            {
+                if (!NodeAudioManager.TryGetSpeakerChirp(speaker, out string chirpPath)) continue;
+                if (!chirps.ContainsKey(speaker)) continue;
+                AudioClip clip = VoidLib2.AudioImporter.Bass.LoadAudio(chirpPath);
+                chirps[speaker] = clip;
+            }
             if (wasSuccess) LoggerInstance.Msg("Dialogue patched successfully");
             else LoggerInstance.Warning("Some parts of the dialogue patching failed. This may cause incorrect behavior.");
             DialogueEvents.OnDialoguePatched?.Invoke();
+        }
+
+        // might be useful, i made this and it didnt work but i didnt want to remove it
+        private void PatchAudioSources()
+        {
+            LoggerInstance.Msg("Patching AudioSources...");
+            GameObject cool = new("MZDO");
+            List<string> speakers = Pack.trees.SelectMany(tree => tree.nodes).Select(x => x.speakerName).Distinct().ToList();
+            speakers.Remove("HELLO"); // not supported since idk how it works
+
+            foreach (string speaker in speakers)
+            {
+                if (!NodeAudioManager.TryGetSpeakerChirp(speaker, out string chirpPath)) continue;
+                AudioClip clip = VoidLib2.AudioImporter.Bass.LoadAudio(chirpPath);
+                if (TryGetSpeakerAudioSource(speaker, out AudioSource source))
+                {
+                    source.clip = clip;
+                }
+                else
+                {
+                    GameObject root = new(speaker);
+                    GameObject a = new("Audio");
+                    a.transform.SetParent(root.transform);
+                    GameObject b = new("Speak");
+                    b.transform.SetParent(a.transform);
+                    b.AddComponent<AudioSource>().clip = clip;
+                }
+            }
         }
 
         public override void OnUpdate()
