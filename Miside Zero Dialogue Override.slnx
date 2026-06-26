@@ -3,4 +3,5 @@
   <Project Path="MZDO.Shared/MZDO.Shared.csproj" Id="6a31eff8-4aed-440a-ba41-4c856e19498c" />
   <Project Path="MSZDialogueManager/ScrollbarHook/ScrollbarHook.vcxproj" Id="666b98a1-27b4-80c8-07d2-7cfe5c2e06c1" />
   <Project Path="MSZDialogueManager/MSZDialougeManager.csproj" />
+  <Project Path="DialogueMapper/MSZDialogueMap.csproj" Id="e027ad15-e109-4a10-8bdf-54fbc8ae7320" />
 </Solution>
