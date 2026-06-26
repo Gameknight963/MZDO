@@ -1,0 +1,75 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <RootNamespace>MSZDialougeManager</RootNamespace>
+    <AssemblyName>MSZDialougeManager</AssemblyName>
+    <UseWindowsForms>true</UseWindowsForms>
+    <Deterministic>true</Deterministic>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+	<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+	<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+	<ApplicationIcon>msz.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="ScrollbarHook\**" />
+    <Compile Remove="x64\**" />
+    <EmbeddedResource Remove="ScrollbarHook\**" />
+    <EmbeddedResource Remove="x64\**" />
+    <None Remove="ScrollbarHook\**" />
+    <None Remove="x64\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="msz.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NAudio" Version="2.2.1" />
+    <PackageReference Include="NAudio.Vorbis" Version="1.5.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
+	<PackageReference Include="System.Speech" Version="8.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="ScrollbarHook\ScrollbarHook.vcxproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="FontRu.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="templateNodes.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EditorConfigFiles Remove="C:\Users\gameknight963\projects\MSZDialogueManager\.editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="C:\Users\gameknight963\projects\MSZDialogueManager\.editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="MZDO.Shared">
+      <HintPath>MZDO.Shared.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+</Project>

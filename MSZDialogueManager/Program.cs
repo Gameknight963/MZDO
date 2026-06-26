@@ -1,0 +1,25 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace MSZDialougeManager
+{
+    internal static class Program
+    {
+        /// <summary>
+        /// The main entry point for the application.
+        /// </summary>
+        [STAThread]
+        static int Main(string[] args)
+        {
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            // uncomment to enable console
+            // ConsoleHelper.ShowConsole();
+            Application.Run(new DialogueEditor(args.Length > 0 ? args[0] : null));
+            return 0;
+        }
+    }
+}
