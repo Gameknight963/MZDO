@@ -56,8 +56,5 @@
 		<Reference Include="Il2CppInterop.Runtime">
 			<HintPath>$(GamePath)/MelonLoader\net6\Il2CppInterop.Runtime.dll</HintPath>
 		</Reference>
-		<Reference Include="VoidLib2">
-		  <HintPath>$(GamePath)\UserLibs\VoidLib2.dll</HintPath>
-		</Reference>
 	</ItemGroup>
 </Project>
